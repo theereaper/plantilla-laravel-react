@@ -13,21 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             // ID como UUID
             $table->uuid('id')->primary();
 
-            $table->string('name');
-            $table->string('lastname');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('phone');
+            // Identificadores
+            $table->string('barcode');
+            $table->string('sku');
 
-            // Rol restringido
-            $table->enum('role', ['owner', 'admin', 'delivery_person']);
+            // Desciptores
+            $table->string('name');
+            $table->string('description');
+            $table->string('price');
+            $table->integer('quantity');
+            $table->string('brand');
+            $table->string('model');
 
             $table->string('status');
-
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -41,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('products');
     }
 };

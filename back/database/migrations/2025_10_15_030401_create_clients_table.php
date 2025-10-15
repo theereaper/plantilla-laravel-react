@@ -13,20 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             // ID como UUID
             $table->uuid('id')->primary();
 
             $table->string('name');
-            $table->string('lastname');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone');
 
             // Rol restringido
-            $table->enum('role', ['owner', 'admin', 'delivery_person']);
-
-            $table->string('status');
+            $table->string('address');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
@@ -41,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('clients');
     }
 };
