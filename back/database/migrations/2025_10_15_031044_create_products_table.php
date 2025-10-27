@@ -19,19 +19,22 @@ return new class extends Migration
 
             // Identificadores
             $table->string('barcode');
-            $table->string('sku');
+            $table->string('sku')->nullable();
 
             // Desciptores
             $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->integer('quantity');
-            $table->string('brand');
-            $table->string('model');
+            $table->text('description');
+            $table->integer('weight');
+            $table->string('brand')->nullable();
+            $table->string('model')->nullable();
 
-            $table->string('status');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            // Descriptores ventas
+            $table->decimal('price', 10, 2);
+            $table->integer('quantity')->default(0);
+            $table->boolean('weighlable')->default(false);
+
+            // Estado de producto
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

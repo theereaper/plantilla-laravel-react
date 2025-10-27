@@ -18,11 +18,14 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->string('name');
+            $table->string('lastname');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('phone');
 
-            // Rol restringido
             $table->string('address');
+
+            $table->string('status')->default('active');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
